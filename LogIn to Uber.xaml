@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="LogIn_to_Uber" sap:VirtualizedContainerService.HintSize="2338,4746" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System.Net.Mail" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="LogIn_to_Uber" sap:VirtualizedContainerService.HintSize="2904,4708" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System.Net.Mail" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -115,27 +115,27 @@
       <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="2348,4681" sap2010:WorkflowViewState.IdRef="Sequence_27">
+  <Sequence sap:VirtualizedContainerService.HintSize="2914,4643" sap2010:WorkflowViewState.IdRef="Sequence_27">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Never" DisplayName="Use Browser Chrome: Uber" sap:VirtualizedContainerService.HintSize="2286,4593" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OpenMode="IfNotOpen" ScopeGuid="01e67db0-d5c6-4e93-ab79-eaa9a1b41bf7" Version="V2">
+    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Always" DisplayName="Use Browser Chrome: Uber" sap:VirtualizedContainerService.HintSize="2852,4555" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OpenMode="IfNotOpen" ScopeGuid="01e67db0-d5c6-4e93-ab79-eaa9a1b41bf7" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="2252,4353" sap2010:WorkflowViewState.IdRef="Sequence_28">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="2818,4315" sap2010:WorkflowViewState.IdRef="Sequence_28">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <uix:NCheckState DisplayName="Check App State 'INPUT PHONE_NUMBER_or_E…'" sap:VirtualizedContainerService.HintSize="2190,4263" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="01e67db0-d5c6-4e93-ab79-eaa9a1b41bf7" Timeout="3" Version="V3">
+            <uix:NCheckState DisplayName="Check App State 'INPUT PHONE_NUMBER_or_E…'" sap:VirtualizedContainerService.HintSize="2756,4225" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="01e67db0-d5c6-4e93-ab79-eaa9a1b41bf7" Timeout="3" Version="V3">
               <uix:NCheckState.IfExists>
-                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="1686,3981" sap2010:WorkflowViewState.IdRef="Sequence_29">
+                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="1686,3983" sap2010:WorkflowViewState.IdRef="Sequence_29">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -163,9 +163,9 @@
                       </uix:TargetAnchorable>
                     </uix:NClick.Target>
                   </uix:NClick>
-                  <uix:NCheckState DelayBefore="10" DisplayName="Check App State 'DIV'" sap:VirtualizedContainerService.HintSize="1624,3452" sap2010:WorkflowViewState.IdRef="NCheckState_2" ScopeIdentifier="01e67db0-d5c6-4e93-ab79-eaa9a1b41bf7" Timeout="2" Version="V3">
+                  <uix:NCheckState DelayBefore="10" DisplayName="Check App State 'DIV'" sap:VirtualizedContainerService.HintSize="1624,3454" sap2010:WorkflowViewState.IdRef="NCheckState_2" ScopeIdentifier="01e67db0-d5c6-4e93-ab79-eaa9a1b41bf7" Timeout="2" Version="V3">
                     <uix:NCheckState.IfExists>
-                      <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="1120,3210" sap2010:WorkflowViewState.IdRef="Sequence_31">
+                      <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="1120,3212" sap2010:WorkflowViewState.IdRef="Sequence_31">
                         <Sequence.Variables>
                           <Variable x:TypeArguments="x:String" Name="OTP" />
                           <Variable x:TypeArguments="scg:List(snm:MailMessage)" Name="UberMail" />
@@ -254,7 +254,7 @@
                                 <uix:NTypeInto.Target>
                                   <uix:TargetAnchorable BrowserURL="https://auth.uber.com/v2/?breeze_init_req_id=af41b01a-8f00-4acb-ad83-34e96252ac6e&amp;breeze_local_zone=phx50&amp;next_url=https%3A%2F%2Fm.uber.com%2Flogin-redirect%2F%3FpreviousPath%3D%252F&amp;state=GodDaSIhE06f7ZROdLdYOBbaaNIQoKYrOCqfRIn5JSw%3D" CVScreenId="e586069f-ce0b-4da7-90bb-dc60c4a2eb6d" CvElementArea="643, 441, 330, 51" CvType="InputBox" DesignTimeRectangle="646, 445, 324, 44" DesignTimeScaleFactor="1" ElementType="InputBox" FullSelectorArgument="&lt;webctrl id='FIRST_NAME' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl id='FIRST_NAME' tag='INPUT' type='text' class='ag gc gd ge gf gg gh gi gj gk bu au gl ej gm by gn go ho hp fz bw g0 bd b9 gr gs' placeholder='Please enter first name' aaname='' /&gt;" Guid="bdcb4463-06ed-49c4-81da-2db51c110cdf" InformativeScreenshot="b1af63a6b1293ec96ef7c9d04fb339cc.png" IsResponsive="True" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Uber' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive">
                                     <uix:TargetAnchorable.Anchors>
-                                      <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
                                         <uix:Target CVScreenId="e586069f-ce0b-4da7-90bb-dc60c4a2eb6d" CvTextArea="643, 416, 77, 15" CvTextArgument="First name" CvType="Text" DesignTimeRectangle="644, 415, 328, 20" ElementType="Text" FullSelectorArgument="&lt;webctrl tag='LABEL' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='LABEL' type='' class='bw d6 b8 dm' aaname='First name' check:innerText='First name' /&gt;" Guid="98b90dad-f619-46e6-b819-f9287c7109c0" SearchSteps="Selector" />
                                       </scg:List>
                                     </uix:TargetAnchorable.Anchors>
@@ -265,7 +265,7 @@
                                 <uix:NTypeInto.Target>
                                   <uix:TargetAnchorable BrowserURL="https://auth.uber.com/v2/?breeze_init_req_id=af41b01a-8f00-4acb-ad83-34e96252ac6e&amp;breeze_local_zone=phx50&amp;next_url=https%3A%2F%2Fm.uber.com%2Flogin-redirect%2F%3FpreviousPath%3D%252F&amp;state=GodDaSIhE06f7ZROdLdYOBbaaNIQoKYrOCqfRIn5JSw%3D" CVScreenId="e586069f-ce0b-4da7-90bb-dc60c4a2eb6d" CvElementArea="642, 528, 332, 52" CvType="InputBox" DesignTimeRectangle="646, 533, 324, 44" DesignTimeScaleFactor="1" ElementType="InputBox" FullSelectorArgument="&lt;webctrl id='LAST_NAME' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl id='LAST_NAME' tag='INPUT' type='text' class='ag gc gd ge gf gg gh gi gj gk bu au gl ej gm by gn go ho hp fz bw g0 bd b9 gr gs' placeholder='Please enter surname' aaname='' /&gt;" Guid="45cd58c2-22d7-4563-b695-0d0ea944db6b" InformativeScreenshot="4e5f5b44d8f0f5f1b75df312b69db08e.png" IsResponsive="True" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Uber' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive">
                                     <uix:TargetAnchorable.Anchors>
-                                      <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
                                         <uix:Target CVScreenId="e586069f-ce0b-4da7-90bb-dc60c4a2eb6d" CvTextArea="643, 504, 76, 15" CvTextArgument="Last name" CvType="Text" DesignTimeRectangle="644, 503, 328, 20" ElementType="Text" FullSelectorArgument="&lt;webctrl aaname='Last name' tag='LABEL' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Last name' tag='LABEL' type='' class='bw d6 b8 dm' check:innerText='Last name' /&gt;" Guid="ca3ff842-3691-45b9-b4e2-7e2265479626" SearchSteps="Selector" />
                                       </scg:List>
                                     </uix:TargetAnchorable.Anchors>
@@ -276,7 +276,7 @@
                                 <uix:NClick.Target>
                                   <uix:TargetAnchorable BrowserURL="https://auth.uber.com/v2/?breeze_init_req_id=af41b01a-8f00-4acb-ad83-34e96252ac6e&amp;breeze_local_zone=phx50&amp;next_url=https%3A%2F%2Fm.uber.com%2Flogin-redirect%2F%3FpreviousPath%3D%252F&amp;state=GodDaSIhE06f7ZROdLdYOBbaaNIQoKYrOCqfRIn5JSw%3D" CVScreenId="f51b6f1d-3454-4ba5-8bc3-61f6e2e3cfed" CvElementArea="878, 665, 98, 59" CvTextArea="898, 686, 35, 15" CvTextArgument="Next" CvType="Button" DesignTimeRectangle="899, 685, 33, 20" DesignTimeScaleFactor="1" ElementType="Text" FullSelectorArgument="&lt;webctrl aaname='Next' parentid='forward-button' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Next' parentid='forward-button' tag='DIV' type='' class='ae ak' check:innerText='Next' /&gt;" Guid="82bb6f36-168d-4763-9ee4-b93423c898ba" InformativeScreenshot="9c8d50b1aca6bddbf4ed703baa88435d.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Uber' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive">
                                     <uix:TargetAnchorable.Anchors>
-                                      <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
                                         <uix:Target CVScreenId="f51b6f1d-3454-4ba5-8bc3-61f6e2e3cfed" CvElementArea="878, 665, 98, 59" CvTextArea="898, 686, 35, 15" CvTextArgument="Next" CvType="Button" DesignTimeRectangle="883, 669, 89, 52" ElementType="Button" FullSelectorArgument="&lt;webctrl id='forward-button' tag='BUTTON' /&gt;" FuzzySelectorArgument="&lt;webctrl id='forward-button' tag='BUTTON' type='submit' class='ew ex bw d6 ae bv ak bh d7 bu d8 d9 by da db dc hj dd de ey ez' aaname='NextArrow right' check:innerText='Next' /&gt;" Guid="cbcf0ae5-a26b-4cc7-a878-a2364a9b0a79" SearchSteps="Selector" />
                                       </scg:List>
                                     </uix:TargetAnchorable.Anchors>
@@ -299,7 +299,7 @@
                                 <uix:NClick.Target>
                                   <uix:TargetAnchorable BrowserURL="https://auth.uber.com/v2/?breeze_init_req_id=af41b01a-8f00-4acb-ad83-34e96252ac6e&amp;breeze_local_zone=phx50&amp;next_url=https%3A%2F%2Fm.uber.com%2Flogin-redirect%2F%3FpreviousPath%3D%252F&amp;state=GodDaSIhE06f7ZROdLdYOBbaaNIQoKYrOCqfRIn5JSw%3D" CVScreenId="1c154fac-4384-41f4-acee-a5a7e7bab4e0" CvElementArea="880, 689, 94, 55" CvTextArea="898, 708, 35, 15" CvTextArgument="Next" CvType="Button" DesignTimeRectangle="899, 707, 33, 20" DesignTimeScaleFactor="1" ElementType="Text" FullSelectorArgument="&lt;webctrl aaname='Next' parentid='forward-button' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Next' parentid='forward-button' tag='DIV' type='' class='ae ak' check:innerText='Next' /&gt;" Guid="b6a82cb4-78b6-4120-b6b5-a37c41da0743" InformativeScreenshot="5d4e1aad15b2b034f680a2bc0524e715.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Uber' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive">
                                     <uix:TargetAnchorable.Anchors>
-                                      <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
                                         <uix:Target CVScreenId="1c154fac-4384-41f4-acee-a5a7e7bab4e0" CvElementArea="880, 689, 94, 55" CvTextArea="898, 708, 35, 15" CvTextArgument="Next" CvType="Button" DesignTimeRectangle="883, 691, 89, 52" ElementType="Button" FullSelectorArgument="&lt;webctrl id='forward-button' tag='BUTTON' /&gt;" FuzzySelectorArgument="&lt;webctrl id='forward-button' tag='BUTTON' type='submit' class='ew ex bw d6 ae bv ak bh d7 bu d8 d9 by da db dc hj dd de ey ez' aaname='NextArrow right' check:innerText='Next' /&gt;" Guid="eda81958-1960-4c80-ad15-e5d9c2dc674c" SearchSteps="Selector" />
                                       </scg:List>
                                     </uix:TargetAnchorable.Anchors>
@@ -320,7 +320,7 @@
                           <uix:NCheckState.Target>
                             <uix:TargetAnchorable BrowserURL="https://auth.uber.com/v2/?breeze_init_req_id=af41b01a-8f00-4acb-ad83-34e96252ac6e&amp;breeze_local_zone=phx50&amp;next_url=https%3A%2F%2Fm.uber.com%2Flogin-redirect%2F%3FpreviousPath%3D%252F&amp;state=GodDaSIhE06f7ZROdLdYOBbaaNIQoKYrOCqfRIn5JSw%3D" DesignTimeRectangle="644, 314, 328, 76" DesignTimeScaleFactor="1" ElementType="Text" FullSelectorArgument="&lt;webctrl id='title' aaname='Enter your mobile number (Optional)' /&gt;" FuzzySelectorArgument="&lt;webctrl id='title' aaname='Enter your mobile number (Optional)' tag='H1' type='' class='f9 fa b5 b6 b7 b8 b9 fb fc' check:text='Enter your mobile number&amp;#xA;(Optional)' /&gt;" Guid="98527a03-b5a3-42bb-95c1-52e67f2cec9b" InformativeScreenshot="ceb0d4280a88908e1cb48598139bec55.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Uber' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive">
                               <uix:TargetAnchorable.Anchors>
-                                <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                                <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
                                   <uix:Target CVScreenId="08d38259-c915-4434-9927-691907e02e79" CvElementArea="641, 565, 55, 38" CvTextArea="655, 577, 29, 16" CvTextArgument="Skip" CvType="Button" DesignTimeRectangle="644, 566, 51, 36" ElementType="Button" FullSelectorArgument="&lt;webctrl id='alt-action-skip' tag='BUTTON' /&gt;" FuzzySelectorArgument="&lt;webctrl id='alt-action-skip' tag='BUTTON' type='' class='gt bc ak aw gd gf ge gg gh gj gi gk bu d8 dh gu gv fu gw bh da gx dc ef gy eh gz fz cu d9 c2 h0 h1 h2 h3 gn go h4 h5 b9 g5 h6 h7 fe' aaname='Skip ' check:innerText='Skip' /&gt;" Guid="2be286cd-17c1-4033-94b0-2d87ad908e70" SearchSteps="Selector" />
                                 </scg:List>
                               </uix:TargetAnchorable.Anchors>
@@ -357,13 +357,43 @@
                 </Sequence>
               </uix:NCheckState.IfExists>
               <uix:NCheckState.IfNotExists>
-                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="450,258" sap2010:WorkflowViewState.IdRef="Sequence_30">
+                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="1016,584" sap2010:WorkflowViewState.IdRef="Sequence_30">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="388,168" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Target failed to load &quot;]" />
+                  <uix:NCheckState DisplayName="Check App State 'Find a'" sap:VirtualizedContainerService.HintSize="954,496" sap2010:WorkflowViewState.IdRef="NCheckState_5" ScopeIdentifier="01e67db0-d5c6-4e93-ab79-eaa9a1b41bf7" Version="V3">
+                    <uix:NCheckState.IfExists>
+                      <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="450,256" sap2010:WorkflowViewState.IdRef="Sequence_38">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="388,168" sap2010:WorkflowViewState.IdRef="LogMessage_5" Message="[&quot;user has already logged in&quot;]" />
+                      </Sequence>
+                    </uix:NCheckState.IfExists>
+                    <uix:NCheckState.IfNotExists>
+                      <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="450,256" sap2010:WorkflowViewState.IdRef="Sequence_39">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="388,168" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Target failed to load &quot;]" />
+                      </Sequence>
+                    </uix:NCheckState.IfNotExists>
+                    <uix:NCheckState.Target>
+                      <uix:TargetAnchorable BrowserURL="https://m.uber.com/go/home?effect=" DesignTimeRectangle="8, 129, 1600, 60" DesignTimeScaleFactor="1" FullSelectorArgument="&lt;webctrl class='_css-llANtD' parentid='wrapper' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl class='_css-llANtD' parentid='wrapper' tag='DIV' type='' aaname='' check:innerText='Uber&amp;#xD;&amp;#xA;Trip&amp;#xD;&amp;#xA;My trips' /&gt;" Guid="725d35a0-ccef-40c6-ad97-aab09be03b40" InformativeScreenshot="17141a3978e143823163a5fa2428c7d3.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Plan your Uber journey' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive">
+                        <uix:TargetAnchorable.Anchors>
+                          <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                            <uix:Target DesignTimeRectangle="72, 221, 328, 360" FullSelectorArgument="&lt;webctrl class='_css-jBKELL' tag='SECTION' /&gt;" FuzzySelectorArgument="&lt;webctrl class='_css-jBKELL' tag='SECTION' type='' aaname='' check:innerText='Find a trip&amp;#xD;&amp;#xA;Pick-up location&amp;#xD;&amp;#xA;Drop-off location&amp;#xD;&amp;#xA;Pick up now&amp;#xD;&amp;#xA;For me&amp;#xD;&amp;#xA;Search' /&gt;" Guid="5085c55f-c60b-44b6-996e-cfe4f39bb895" SearchSteps="Selector" />
+                          </scg:List>
+                        </uix:TargetAnchorable.Anchors>
+                      </uix:TargetAnchorable>
+                    </uix:NCheckState.Target>
+                  </uix:NCheckState>
                 </Sequence>
               </uix:NCheckState.IfNotExists>
               <uix:NCheckState.Target>
