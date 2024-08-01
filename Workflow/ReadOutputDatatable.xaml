@@ -2,8 +2,10 @@
   <x:Members>
     <x:Property Name="out_dt_UberCostDetails" Type="OutArgument(sd:DataTable)" />
     <x:Property Name="out_dt_OlaCabDetails" Type="OutArgument(sd:DataTable)" />
+    <x:Property Name="out_dt_TravelDetails" Type="OutArgument(sd:DataTable)" />
+    <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>887,640</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>861,761</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -100,13 +102,14 @@
       <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="416,319" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Ola and Uber data table is read and stored" DisplayName="Sequence : read Output data table " sap:VirtualizedContainerService.HintSize="416,696" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[out_dt_UberCostDetails]" DisplayName="Read Range Workbook" sap:VirtualizedContainerService.HintSize="354,120" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="UberCostDetails" WorkbookPath="Data\Output\Route Tracker-Output.xlsx">
+    <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[out_dt_UberCostDetails]" DisplayName="Read Range Workbook : Uber data table " sap:VirtualizedContainerService.HintSize="354,120" sap2010:WorkflowViewState.IdRef="ReadRange_1" SheetName="[in_Config(&quot;UberCostSheet&quot;).ToString]" WorkbookPath="[in_Config(&quot;OutputFilePath&quot;).ToString]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -114,6 +117,8 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ReadRange>
-    <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[out_dt_OlaCabDetails]" DisplayName="Read Range Workbook" sap:VirtualizedContainerService.HintSize="354,111" sap2010:WorkflowViewState.IdRef="ReadRange_2" SheetName="OlaCostDeatils" WorkbookPath="Data\Output\Route Tracker-Output.xlsx" />
+    <ui:LogMessage DisplayName="Log Message : Uber data table " sap:VirtualizedContainerService.HintSize="354,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot; Uber data table is read &quot;]" />
+    <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[out_dt_OlaCabDetails]" DisplayName="Read Range Workbook : Ola Data table " sap:VirtualizedContainerService.HintSize="354,120" sap2010:WorkflowViewState.IdRef="ReadRange_2" SheetName="[in_Config(&quot;OlaCostSheet&quot;).ToString]" WorkbookPath="[in_Config(&quot;OutputFilePath&quot;).ToString]" />
+    <ui:LogMessage DisplayName="Log Message : Ola data table " sap:VirtualizedContainerService.HintSize="354,164" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot; Ola data table is read &quot;]" />
   </Sequence>
 </Activity>

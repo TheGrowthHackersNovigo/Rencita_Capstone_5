@@ -2,11 +2,12 @@
   <x:Members>
     <x:Property Name="in_dt_UberDetails" Type="InArgument(sd:DataTable)" />
     <x:Property Name="in_dt_OlaDetails" Type="InArgument(sd:DataTable)" />
+    <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
   </x:Members>
   <this:WriteOutputDetails.in_dt_OlaDetails>
     <InArgument x:TypeArguments="sd:DataTable" />
   </this:WriteOutputDetails.in_dt_OlaDetails>
-  <sap:VirtualizedContainerService.HintSize>1167,753</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>861,1359</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -103,15 +104,58 @@
       <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="416,688" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Sequence : Write Output Data " sap:VirtualizedContainerService.HintSize="416,1294" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_Result" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_TravelDetails" />
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" DataTable="[in_dt_UberDetails]" DisplayName="Write Range Workbook" sap:VirtualizedContainerService.HintSize="354,148" sap2010:WorkflowViewState.IdRef="WriteRange_1" SheetName="UberCostDetails" WorkbookPath="Data\Output\Route Tracker-Output.xlsx" />
-    <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" DataTable="[in_dt_OlaDetails]" DisplayName="Write Range Workbook" sap:VirtualizedContainerService.HintSize="354,148" sap2010:WorkflowViewState.IdRef="WriteRange_2" SheetName="OlaCostDeatils" WorkbookPath="Data\Output\Route Tracker-Output.xlsx" />
-    <ui:MergeDataTable Destination="[in_dt_UberDetails]" DisplayName="Merge Data Table" sap:VirtualizedContainerService.HintSize="354,165" sap2010:WorkflowViewState.IdRef="MergeDataTable_1" MissingSchemaAction="Add" Source="[in_dt_OlaDetails]" />
-    <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" DataTable="[in_dt_UberDetails]" DisplayName="Write Range Workbook" sap:VirtualizedContainerService.HintSize="354,139" sap2010:WorkflowViewState.IdRef="WriteRange_3" SheetName="Final Results" WorkbookPath="Data\Output\Route Tracker-Output.xlsx" />
+    <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" DataTable="[in_dt_UberDetails]" DisplayName="Write Range Workbook : Uber Details" sap:VirtualizedContainerService.HintSize="354,148" sap2010:WorkflowViewState.IdRef="WriteRange_1" SheetName="[in_Config(&quot;UberCostSheet&quot;).ToString]" WorkbookPath="[in_Config(&quot;OutputFilePath&quot;).ToString]" />
+    <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" DataTable="[in_dt_OlaDetails]" DisplayName="Write Range Workbook : Ola details " sap:VirtualizedContainerService.HintSize="354,148" sap2010:WorkflowViewState.IdRef="WriteRange_2" SheetName="[in_Config(&quot;OlaCostSheet&quot;).ToString]" WorkbookPath="[in_Config(&quot;OutputFilePath&quot;).ToString]" />
+    <ui:JoinDataTables DataTable1="[in_dt_OlaDetails]" DataTable2="[in_dt_UberDetails]" DisplayName="Join Data Tables : dt_uber and dt_ola is read" sap:VirtualizedContainerService.HintSize="354,92" sap2010:WorkflowViewState.IdRef="JoinDataTables_1" JoinType="Inner" OutputDataTable="[dt_Result]">
+      <ui:JoinDataTables.Arguments>
+        <scg:List x:TypeArguments="ui:JoinOperationArgument" Capacity="4">
+          <ui:JoinOperationArgument Operand="{x:Null}" BooleanOperator="And" Operator="EQ">
+            <ui:JoinOperationArgument.Column1>
+              <InArgument x:TypeArguments="x:String">["From"]</InArgument>
+            </ui:JoinOperationArgument.Column1>
+            <ui:JoinOperationArgument.Column2>
+              <InArgument x:TypeArguments="x:String">["From"]</InArgument>
+            </ui:JoinOperationArgument.Column2>
+          </ui:JoinOperationArgument>
+          <ui:JoinOperationArgument Operand="{x:Null}" BooleanOperator="And" Operator="EQ">
+            <ui:JoinOperationArgument.Column1>
+              <InArgument x:TypeArguments="x:String">["To"]</InArgument>
+            </ui:JoinOperationArgument.Column1>
+            <ui:JoinOperationArgument.Column2>
+              <InArgument x:TypeArguments="x:String">["To"]</InArgument>
+            </ui:JoinOperationArgument.Column2>
+          </ui:JoinOperationArgument>
+        </scg:List>
+      </ui:JoinDataTables.Arguments>
+    </ui:JoinDataTables>
+    <ui:FilterDataTable DataTable="[dt_Result]" DisplayName="Filter Data Table: Remove the comman from and to column" FilterRowsMode="Remove" sap:VirtualizedContainerService.HintSize="354,193" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[dt_TravelDetails]" SelectColumnsMode="Remove">
+      <ui:FilterDataTable.Filters>
+        <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
+          <ui:FilterOperationArgument Column="{x:Null}" Operand="{x:Null}" BooleanOperator="And" Operator="LT" />
+        </scg:List>
+      </ui:FilterDataTable.Filters>
+      <ui:FilterDataTable.SelectColumns>
+        <scg:List x:TypeArguments="InArgument" Capacity="4">
+          <InArgument x:TypeArguments="x:String">["From_1"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["To_1"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["RunTime"]</InArgument>
+          <InArgument x:TypeArguments="x:String">["RunTime_1"]</InArgument>
+        </scg:List>
+      </ui:FilterDataTable.SelectColumns>
+    </ui:FilterDataTable>
+    <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" DataTable="[dt_TravelDetails]" DisplayName="Write Range Workbook : Write the joined table " sap:VirtualizedContainerService.HintSize="354,148" sap2010:WorkflowViewState.IdRef="WriteRange_4" SheetName="[in_Config(&quot;OutputsheetName&quot;).ToString]" WorkbookPath="[in_Config(&quot;OutputFilePath&quot;).ToString]" />
+    <ui:MergeDataTable Destination="[in_dt_UberDetails]" DisplayName="Merge Data Table ; Merge dt_ola and dt_uber" sap:VirtualizedContainerService.HintSize="354,165" sap2010:WorkflowViewState.IdRef="MergeDataTable_1" MissingSchemaAction="Add" Source="[in_dt_OlaDetails]" />
+    <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" DataTable="[in_dt_UberDetails]" DisplayName="Write Range Workbook : Merged data table" sap:VirtualizedContainerService.HintSize="354,148" sap2010:WorkflowViewState.IdRef="WriteRange_3" SheetName="[in_Config(&quot;MergedDataTableDetails&quot;).ToString]" WorkbookPath="[in_Config(&quot;OutputFilePath&quot;).ToString]" />
+    <ui:LogMessage DisplayName="Log Message : Terminated" sap:VirtualizedContainerService.HintSize="334,141" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Process terminated&quot;]" />
   </Sequence>
 </Activity>

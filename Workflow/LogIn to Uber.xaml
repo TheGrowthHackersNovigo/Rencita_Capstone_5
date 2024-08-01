@@ -1,4 +1,9 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="LogIn_to_Uber" sap:VirtualizedContainerService.HintSize="2904,4708" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System.Net.Mail" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="LogIn_to_Uber" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System.Net.Mail" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+  </x:Members>
+  <sap:VirtualizedContainerService.HintSize>2338,4883</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -40,6 +45,7 @@
       <x:String>System.Text.RegularExpressions</x:String>
       <x:String>UiPath.UIAutomationNext.Contracts</x:String>
       <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>System.Numerics</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -115,33 +121,42 @@
       <AssemblyReference>System.Text.RegularExpressions</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="2914,4643" sap2010:WorkflowViewState.IdRef="Sequence_27">
+  <Sequence sap2010:Annotation.AnnotationText="This process is used to log in to Uber site. If the user dont have a accun it creates a account. The otp to log in is sent via mail. The process will access the mail and then the OTP is fetched and entered into the site and bot logs into Uber site " DisplayName="Sequence : Log in to Uber" sap:VirtualizedContainerService.HintSize="2348,4818" sap2010:WorkflowViewState.IdRef="Sequence_27">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="MailAddress" />
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Always" DisplayName="Use Browser Chrome: Uber" sap:VirtualizedContainerService.HintSize="2852,4555" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OpenMode="IfNotOpen" ScopeGuid="01e67db0-d5c6-4e93-ab79-eaa9a1b41bf7" Version="V2">
+    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Always" DisplayName="Use Browser Chrome: Uber" sap:VirtualizedContainerService.HintSize="2286,4699" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OpenMode="IfNotOpen" ScopeGuid="01e67db0-d5c6-4e93-ab79-eaa9a1b41bf7" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="2818,4315" sap2010:WorkflowViewState.IdRef="Sequence_28">
+          <Sequence DisplayName="Do : Enter Phone number" sap:VirtualizedContainerService.HintSize="2252,4459" sap2010:WorkflowViewState.IdRef="Sequence_28">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <uix:NCheckState DisplayName="Check App State 'INPUT PHONE_NUMBER_or_E…'" sap:VirtualizedContainerService.HintSize="2756,4225" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="01e67db0-d5c6-4e93-ab79-eaa9a1b41bf7" Timeout="3" Version="V3">
+            <uix:NCheckState DisplayName="Check App State : Enter phone number " sap:VirtualizedContainerService.HintSize="2190,4369" sap2010:WorkflowViewState.IdRef="NCheckState_1" ScopeIdentifier="01e67db0-d5c6-4e93-ab79-eaa9a1b41bf7" Timeout="[Convert.ToDouble(in_Config(&quot;CheckAppStateTimeMin&quot;))]" Version="V3">
               <uix:NCheckState.IfExists>
-                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="1686,3983" sap2010:WorkflowViewState.IdRef="Sequence_29">
+                <Sequence DisplayName="Target appears : LogIn " sap:VirtualizedContainerService.HintSize="1686,4127" sap2010:WorkflowViewState.IdRef="Sequence_29">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'INPUT PHONE_NUMBER_or_E…'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="1624,250" sap2010:WorkflowViewState.IdRef="NTypeInto_1" ScopeIdentifier="01e67db0-d5c6-4e93-ab79-eaa9a1b41bf7" Text="rencita.monteiro@novigosolutions.com" Version="V3">
+                  <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="[in_Config(&quot;GetMailData&quot;).ToString]" CacheStrategy="None" DisplayName="Get Asset : Get mail address" FolderPath="[in_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="1624,175" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+                    <ui:GetRobotAsset.Value>
+                      <OutArgument x:TypeArguments="x:String">[MailAddress]</OutArgument>
+                    </ui:GetRobotAsset.Value>
+                  </ui:GetRobotAsset>
+                  <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into : Mail address" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="1624,250" sap2010:WorkflowViewState.IdRef="NTypeInto_1" ScopeIdentifier="01e67db0-d5c6-4e93-ab79-eaa9a1b41bf7" Text="[MailAddress]" Version="V3">
                     <uix:NTypeInto.Target>
                       <uix:TargetAnchorable BrowserURL="https://auth.uber.com/v2/?breeze_init_req_id=c8c01dcd-5a0b-48f9-97a3-bfdfdb6a5c87&amp;breeze_local_zone=phx6&amp;next_url=https%3A%2F%2Fm.uber.com%2Flogin-redirect%2F%3FpreviousPath%3D%252F&amp;state=fAg4XoHWtdVFOLxgxOYi_WT0yNXA3zwLTvt2feOG5ts%3D" CVScreenId="a4e6588e-ccee-43de-ad9f-8391d36785a1" CvElementArea="643, 345, 329, 50" CvType="InputBox" DesignTimeRectangle="662, 359, 308, 24" DesignTimeScaleFactor="1" ElementType="InputBox" FullSelectorArgument="&lt;webctrl id='PHONE_NUMBER_or_EMAIL_ADDRESS' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl id='PHONE_NUMBER_or_EMAIL_ADDRESS' tag='INPUT' type='email' class='bu bv bw bd bx by ev au bz c0' placeholder='Enter phone number or email' aaname='Enter phone number or email' /&gt;" Guid="fc200886-89f3-4e86-896e-8a0ff46f14cb" InformativeScreenshot="66026ec3d364354aae422bf505cb1e71.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Uber' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive">
                         <uix:TargetAnchorable.Anchors>
@@ -152,7 +167,7 @@
                       </uix:TargetAnchorable>
                     </uix:NTypeInto.Target>
                   </uix:NTypeInto>
-                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Continue'" sap:VirtualizedContainerService.HintSize="1624,189" sap2010:WorkflowViewState.IdRef="NClick_1" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="01e67db0-d5c6-4e93-ab79-eaa9a1b41bf7" Version="V3">
+                  <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click : 'Continue'" sap:VirtualizedContainerService.HintSize="1624,189" sap2010:WorkflowViewState.IdRef="NClick_1" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="01e67db0-d5c6-4e93-ab79-eaa9a1b41bf7" Version="V3">
                     <uix:NClick.Target>
                       <uix:TargetAnchorable BrowserURL="https://auth.uber.com/v2/?breeze_init_req_id=c8c01dcd-5a0b-48f9-97a3-bfdfdb6a5c87&amp;breeze_local_zone=phx6&amp;next_url=https%3A%2F%2Fm.uber.com%2Flogin-redirect%2F%3FpreviousPath%3D%252F&amp;state=fAg4XoHWtdVFOLxgxOYi_WT0yNXA3zwLTvt2feOG5ts%3D" CVScreenId="2c0e7866-0ec3-4387-b712-a92904150902" CvElementArea="641, 409, 333, 52" CvTextArea="775, 426, 66, 15" CvTextArgument="Continue" CvType="Button" DesignTimeRectangle="776, 425, 64, 20" DesignTimeScaleFactor="1" ElementType="Text" FullSelectorArgument="&lt;webctrl aaname='Continue' parentid='forward-button' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Continue' parentid='forward-button' tag='DIV' type='' class='ae ak' check:innerText='Continue' /&gt;" Guid="7d38608c-0ffc-4045-bcd2-2ba2343c0df9" InformativeScreenshot="043ee16d830bd6757542114147698604.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Uber' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive">
                         <uix:TargetAnchorable.Anchors>
@@ -163,9 +178,9 @@
                       </uix:TargetAnchorable>
                     </uix:NClick.Target>
                   </uix:NClick>
-                  <uix:NCheckState DelayBefore="10" DisplayName="Check App State 'DIV'" sap:VirtualizedContainerService.HintSize="1624,3454" sap2010:WorkflowViewState.IdRef="NCheckState_2" ScopeIdentifier="01e67db0-d5c6-4e93-ab79-eaa9a1b41bf7" Timeout="2" Version="V3">
+                  <uix:NCheckState DelayBefore="10" DisplayName="Check App State : OTP page" sap:VirtualizedContainerService.HintSize="1624,3425" sap2010:WorkflowViewState.IdRef="NCheckState_2" ScopeIdentifier="01e67db0-d5c6-4e93-ab79-eaa9a1b41bf7" Timeout="[Convert.ToDouble(in_Config(&quot;CheckAppStateTimeMin&quot;))]" Version="V3">
                     <uix:NCheckState.IfExists>
-                      <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="1120,3212" sap2010:WorkflowViewState.IdRef="Sequence_31">
+                      <Sequence DisplayName="Target appears : OTP Page loaded" sap:VirtualizedContainerService.HintSize="1120,3183" sap2010:WorkflowViewState.IdRef="Sequence_31">
                         <Sequence.Variables>
                           <Variable x:TypeArguments="x:String" Name="OTP" />
                           <Variable x:TypeArguments="scg:List(snm:MailMessage)" Name="UberMail" />
@@ -175,18 +190,18 @@
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <ui:RetryScope DisplayName="Retry Scope" sap:VirtualizedContainerService.HintSize="1058,1551" sap2010:WorkflowViewState.IdRef="RetryScope_1">
+                        <ui:RetryScope DisplayName="Retry Scope : Enter OTP" sap:VirtualizedContainerService.HintSize="1058,1562" sap2010:WorkflowViewState.IdRef="RetryScope_1">
                           <ui:RetryScope.ActivityBody>
                             <ActivityAction>
-                              <Sequence DisplayName="Action" sap:VirtualizedContainerService.HintSize="1016,1344" sap2010:WorkflowViewState.IdRef="Sequence_35">
+                              <Sequence DisplayName="Action : Enter OTP" sap:VirtualizedContainerService.HintSize="1016,1355" sap2010:WorkflowViewState.IdRef="Sequence_35">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
-                                <ui:GetOutlookMailMessages FilterByMessageIds="{x:Null}" TimeoutMS="{x:Null}" Account="rencita.monteiro@novigosolutions.com" DisplayName="Get Outlook Mail Messages" Filter="[Subject]='[EXTERNAL]Your Uber account verification code'" GetAttachements="False" sap:VirtualizedContainerService.HintSize="954,57" sap2010:WorkflowViewState.IdRef="GetOutlookMailMessages_2" MailFolder="Inbox" MarkAsRead="False" Messages="[UberMail]" OnlyUnreadMessages="True" OrderByDate="NewestFirst" Top="1" />
-                                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="954,175" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[UberMail(0).Body.ToString]" />
-                                <Assign sap:VirtualizedContainerService.HintSize="954,114" sap2010:WorkflowViewState.IdRef="Assign_2">
+                                <ui:GetOutlookMailMessages FilterByMessageIds="{x:Null}" TimeoutMS="{x:Null}" Account="[MailAddress]" DisplayName="Get Outlook Mail Messages: Mail Data" Filter="[Subject]='[EXTERNAL]Your Uber account verification code'" GetAttachements="False" sap:VirtualizedContainerService.HintSize="954,57" sap2010:WorkflowViewState.IdRef="GetOutlookMailMessages_2" MailFolder="Inbox" MarkAsRead="False" Messages="[UberMail]" OnlyUnreadMessages="True" OrderByDate="NewestFirst" Top="1" />
+                                <ui:LogMessage DisplayName="Log Message : Log the mail Data " sap:VirtualizedContainerService.HintSize="954,175" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[UberMail(0).Body.ToString]" />
+                                <Assign DisplayName="Assign : Retrieve the OTP " sap:VirtualizedContainerService.HintSize="954,114" sap2010:WorkflowViewState.IdRef="Assign_2">
                                   <Assign.To>
                                     <OutArgument x:TypeArguments="x:String">[OTP]</OutArgument>
                                   </Assign.To>
@@ -194,30 +209,31 @@
                                     <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Match(UberMail(0).Body.ToString,"(?&lt;=(for\s*this\s*code.\s*|Verification\s*code:\s*))\d+(?=\s*|\w*|$)").Value]</InArgument>
                                   </Assign.Value>
                                 </Assign>
-                                <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DelayAfter="5" DisplayName="Type Into 'INPUT EMAIL_OTP_CODE-0'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="954,250" sap2010:WorkflowViewState.IdRef="NTypeInto_2" ScopeIdentifier="01e67db0-d5c6-4e93-ab79-eaa9a1b41bf7" Text="[OTP]" Version="V3">
+                                <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DelayAfter="5" DisplayName="Type Into : OTP " EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="954,250" sap2010:WorkflowViewState.IdRef="NTypeInto_2" ScopeIdentifier="01e67db0-d5c6-4e93-ab79-eaa9a1b41bf7" Text="[OTP]" Version="V3">
                                   <uix:NTypeInto.Target>
                                     <uix:TargetAnchorable BrowserURL="https://auth.uber.com/v2/?breeze_init_req_id=c8c01dcd-5a0b-48f9-97a3-bfdfdb6a5c87&amp;breeze_local_zone=phx6&amp;next_url=https%3A%2F%2Fm.uber.com%2Flogin-redirect%2F%3FpreviousPath%3D%252F&amp;state=fAg4XoHWtdVFOLxgxOYi_WT0yNXA3zwLTvt2feOG5ts%3D" CVScreenId="4f21ac18-18f4-46b4-9405-a4a67e33b595" CvElementArea="640, 458, 55, 55" CvType="Icon" DesignTimeRectangle="646, 464, 44, 44" DesignTimeScaleFactor="1" ElementType="InputBox" FullSelectorArgument="&lt;webctrl id='EMAIL_OTP_CODE-0' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl id='EMAIL_OTP_CODE-0' tag='INPUT' type='text' class='ag gd ge gf gg gh gi gj gk gl bu au gm ej gn by go gp gq gr g0 bw g1 bd b9 gs gt d1' aaname='' /&gt;" Guid="cadb73f6-aa54-4bbf-b47a-5f0536d99956" InformativeScreenshot="dfd38400c29f707061aad2d00d4a5409.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Uber' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
                                   </uix:NTypeInto.Target>
                                 </uix:NTypeInto>
-                                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="954,175" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[OTP]" />
-                                <uix:NCheckState DisplayName="Check App State 'Enter the'" sap:VirtualizedContainerService.HintSize="954,485" sap2010:WorkflowViewState.IdRef="NCheckState_4" ScopeIdentifier="01e67db0-d5c6-4e93-ab79-eaa9a1b41bf7" Timeout="5" Version="V3">
+                                <ui:LogMessage DisplayName=" Log Message : OTP" sap:VirtualizedContainerService.HintSize="954,175" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[OTP]" />
+                                <uix:NCheckState DisplayName="Check App State : Check OTP" sap:VirtualizedContainerService.HintSize="954,496" sap2010:WorkflowViewState.IdRef="NCheckState_4" ScopeIdentifier="01e67db0-d5c6-4e93-ab79-eaa9a1b41bf7" Timeout="[Convert.ToDouble(in_Config(&quot;CheckAppStateTimeMin&quot;))]" Version="V3">
                                   <uix:NCheckState.IfExists>
-                                    <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="450,205" sap2010:WorkflowViewState.IdRef="Sequence_36">
+                                    <Sequence DisplayName="Target appears : Incorrect OTP" sap:VirtualizedContainerService.HintSize="450,205" sap2010:WorkflowViewState.IdRef="Sequence_36">
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
-                                      <Throw Exception="[new BusinessRuleException(&quot;Invalid OTP&quot;)]" sap:VirtualizedContainerService.HintSize="388,115" sap2010:WorkflowViewState.IdRef="Throw_1" />
+                                      <Throw DisplayName=" Throw : Incorrect OTP" Exception="[new BusinessRuleException(&quot;Invalid OTP&quot;)]" sap:VirtualizedContainerService.HintSize="388,115" sap2010:WorkflowViewState.IdRef="Throw_1" />
                                     </Sequence>
                                   </uix:NCheckState.IfExists>
                                   <uix:NCheckState.IfNotExists>
-                                    <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="450,105" sap2010:WorkflowViewState.IdRef="Sequence_37">
+                                    <Sequence DisplayName="Target does not appear : Correct OTP" sap:VirtualizedContainerService.HintSize="450,256" sap2010:WorkflowViewState.IdRef="Sequence_37">
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
+                                      <ui:LogMessage DisplayName="Log Message : Correct OTP" sap:VirtualizedContainerService.HintSize="388,168" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[&quot;OTP is valid &quot;]" />
                                     </Sequence>
                                   </uix:NCheckState.IfNotExists>
                                   <uix:NCheckState.Target>
@@ -236,21 +252,27 @@
                           <ui:RetryScope.Condition>
                             <ActivityFunc x:TypeArguments="x:Boolean" />
                           </ui:RetryScope.Condition>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
                         </ui:RetryScope>
-                        <uix:NCheckState DisplayName="Check App State 'Enter your'" sap:VirtualizedContainerService.HintSize="1058,1571" sap2010:WorkflowViewState.IdRef="NCheckState_3" ScopeIdentifier="01e67db0-d5c6-4e93-ab79-eaa9a1b41bf7" Timeout="5" Version="V3">
+                        <uix:NCheckState DisplayName="Check App State :  Page Loaded " sap:VirtualizedContainerService.HintSize="1058,1531" sap2010:WorkflowViewState.IdRef="NCheckState_3" ScopeIdentifier="01e67db0-d5c6-4e93-ab79-eaa9a1b41bf7" Timeout="[Convert.ToDouble(in_Config(&quot;CheckAppStateTimeMin&quot;))]" Version="V3">
                           <uix:NCheckState.IfExists>
-                            <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="450,1289" sap2010:WorkflowViewState.IdRef="Sequence_33">
+                            <Sequence DisplayName="Target appears : Create account" sap:VirtualizedContainerService.HintSize="450,1289" sap2010:WorkflowViewState.IdRef="Sequence_33">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Skip'" sap:VirtualizedContainerService.HintSize="388,189" sap2010:WorkflowViewState.IdRef="NClick_2" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="01e67db0-d5c6-4e93-ab79-eaa9a1b41bf7" Version="V3">
+                              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click   : Skip" sap:VirtualizedContainerService.HintSize="388,189" sap2010:WorkflowViewState.IdRef="NClick_2" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="01e67db0-d5c6-4e93-ab79-eaa9a1b41bf7" Version="V3">
                                 <uix:NClick.Target>
                                   <uix:TargetAnchorable BrowserURL="https://auth.uber.com/v2/?breeze_init_req_id=af41b01a-8f00-4acb-ad83-34e96252ac6e&amp;breeze_local_zone=phx50&amp;next_url=https%3A%2F%2Fm.uber.com%2Flogin-redirect%2F%3FpreviousPath%3D%252F&amp;state=GodDaSIhE06f7ZROdLdYOBbaaNIQoKYrOCqfRIn5JSw%3D" CVScreenId="16cf7ee2-c3fb-42d5-b511-b837d2406fe1" CvElementArea="641, 565, 55, 38" CvTextArea="655, 577, 29, 16" CvTextArgument="Skip" CvType="Button" DesignTimeRectangle="644, 566, 51, 36" DesignTimeScaleFactor="1" ElementType="Button" FullSelectorArgument="&lt;webctrl id='alt-action-skip' tag='BUTTON' /&gt;" FuzzySelectorArgument="&lt;webctrl id='alt-action-skip' tag='BUTTON' type='' class='gt bc ak aw gd gf ge gg gh gj gi gk bu d8 dh gu gv fu gw bh da gx dc ef gy eh gz fz cu d9 c2 h0 h1 h2 h3 gn go h4 h5 b9 g5 h6 h7 fe' aaname='Skip ' check:innerText='Skip' /&gt;" Guid="d7eaa490-5273-4a93-a478-4aa0e5cca8ea" InformativeScreenshot="fb0a1d7c01f9580730fe30ceebe595e4.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Uber' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive" />
                                 </uix:NClick.Target>
                               </uix:NClick>
-                              <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'First name'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="388,250" sap2010:WorkflowViewState.IdRef="NTypeInto_3" ScopeIdentifier="01e67db0-d5c6-4e93-ab79-eaa9a1b41bf7" Text="Rencita" Version="V3">
+                              <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into : 'First name'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="388,250" sap2010:WorkflowViewState.IdRef="NTypeInto_3" ScopeIdentifier="01e67db0-d5c6-4e93-ab79-eaa9a1b41bf7" Text="Rencita" Version="V3">
                                 <uix:NTypeInto.Target>
                                   <uix:TargetAnchorable BrowserURL="https://auth.uber.com/v2/?breeze_init_req_id=af41b01a-8f00-4acb-ad83-34e96252ac6e&amp;breeze_local_zone=phx50&amp;next_url=https%3A%2F%2Fm.uber.com%2Flogin-redirect%2F%3FpreviousPath%3D%252F&amp;state=GodDaSIhE06f7ZROdLdYOBbaaNIQoKYrOCqfRIn5JSw%3D" CVScreenId="e586069f-ce0b-4da7-90bb-dc60c4a2eb6d" CvElementArea="643, 441, 330, 51" CvType="InputBox" DesignTimeRectangle="646, 445, 324, 44" DesignTimeScaleFactor="1" ElementType="InputBox" FullSelectorArgument="&lt;webctrl id='FIRST_NAME' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl id='FIRST_NAME' tag='INPUT' type='text' class='ag gc gd ge gf gg gh gi gj gk bu au gl ej gm by gn go ho hp fz bw g0 bd b9 gr gs' placeholder='Please enter first name' aaname='' /&gt;" Guid="bdcb4463-06ed-49c4-81da-2db51c110cdf" InformativeScreenshot="b1af63a6b1293ec96ef7c9d04fb339cc.png" IsResponsive="True" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Uber' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive">
                                     <uix:TargetAnchorable.Anchors>
@@ -261,7 +283,7 @@
                                   </uix:TargetAnchorable>
                                 </uix:NTypeInto.Target>
                               </uix:NTypeInto>
-                              <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Last name'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="388,250" sap2010:WorkflowViewState.IdRef="NTypeInto_4" ScopeIdentifier="01e67db0-d5c6-4e93-ab79-eaa9a1b41bf7" Text="Monteiro" Version="V3">
+                              <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into : 'Last name'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="388,250" sap2010:WorkflowViewState.IdRef="NTypeInto_4" ScopeIdentifier="01e67db0-d5c6-4e93-ab79-eaa9a1b41bf7" Text="Monteiro" Version="V3">
                                 <uix:NTypeInto.Target>
                                   <uix:TargetAnchorable BrowserURL="https://auth.uber.com/v2/?breeze_init_req_id=af41b01a-8f00-4acb-ad83-34e96252ac6e&amp;breeze_local_zone=phx50&amp;next_url=https%3A%2F%2Fm.uber.com%2Flogin-redirect%2F%3FpreviousPath%3D%252F&amp;state=GodDaSIhE06f7ZROdLdYOBbaaNIQoKYrOCqfRIn5JSw%3D" CVScreenId="e586069f-ce0b-4da7-90bb-dc60c4a2eb6d" CvElementArea="642, 528, 332, 52" CvType="InputBox" DesignTimeRectangle="646, 533, 324, 44" DesignTimeScaleFactor="1" ElementType="InputBox" FullSelectorArgument="&lt;webctrl id='LAST_NAME' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl id='LAST_NAME' tag='INPUT' type='text' class='ag gc gd ge gf gg gh gi gj gk bu au gl ej gm by gn go ho hp fz bw g0 bd b9 gr gs' placeholder='Please enter surname' aaname='' /&gt;" Guid="45cd58c2-22d7-4563-b695-0d0ea944db6b" InformativeScreenshot="4e5f5b44d8f0f5f1b75df312b69db08e.png" IsResponsive="True" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Uber' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive">
                                     <uix:TargetAnchorable.Anchors>
@@ -272,7 +294,7 @@
                                   </uix:TargetAnchorable>
                                 </uix:NTypeInto.Target>
                               </uix:NTypeInto>
-                              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Next'" sap:VirtualizedContainerService.HintSize="388,189" sap2010:WorkflowViewState.IdRef="NClick_3" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="01e67db0-d5c6-4e93-ab79-eaa9a1b41bf7" Version="V3">
+                              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click :  'Next'" sap:VirtualizedContainerService.HintSize="388,189" sap2010:WorkflowViewState.IdRef="NClick_3" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="01e67db0-d5c6-4e93-ab79-eaa9a1b41bf7" Version="V3">
                                 <uix:NClick.Target>
                                   <uix:TargetAnchorable BrowserURL="https://auth.uber.com/v2/?breeze_init_req_id=af41b01a-8f00-4acb-ad83-34e96252ac6e&amp;breeze_local_zone=phx50&amp;next_url=https%3A%2F%2Fm.uber.com%2Flogin-redirect%2F%3FpreviousPath%3D%252F&amp;state=GodDaSIhE06f7ZROdLdYOBbaaNIQoKYrOCqfRIn5JSw%3D" CVScreenId="f51b6f1d-3454-4ba5-8bc3-61f6e2e3cfed" CvElementArea="878, 665, 98, 59" CvTextArea="898, 686, 35, 15" CvTextArgument="Next" CvType="Button" DesignTimeRectangle="899, 685, 33, 20" DesignTimeScaleFactor="1" ElementType="Text" FullSelectorArgument="&lt;webctrl aaname='Next' parentid='forward-button' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Next' parentid='forward-button' tag='DIV' type='' class='ae ak' check:innerText='Next' /&gt;" Guid="82bb6f36-168d-4763-9ee4-b93423c898ba" InformativeScreenshot="9c8d50b1aca6bddbf4ed703baa88435d.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Uber' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive">
                                     <uix:TargetAnchorable.Anchors>
@@ -283,7 +305,7 @@
                                   </uix:TargetAnchorable>
                                 </uix:NClick.Target>
                               </uix:NClick>
-                              <ui:Check AlterIfDisabled="{x:Null}" ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" Action="Check" DisplayName="Check 'LABEL  LEGAL_ACCEPT_TER...'" sap:VirtualizedContainerService.HintSize="388,139" sap2010:WorkflowViewState.IdRef="Check_1">
+                              <ui:Check AlterIfDisabled="{x:Null}" ContinueOnError="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" Action="Check" DisplayName="Check : I agree" sap:VirtualizedContainerService.HintSize="388,139" sap2010:WorkflowViewState.IdRef="Check_1">
                                 <ui:Check.Target>
                                   <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="4832396d-a445-4a0e-9ce0-8718fe3d9039" InformativeScreenshot="029f73672afc2d5bd4d1aeed48ccff17" Selector="&lt;webctrl id='LEGAL_ACCEPT_TERMS' tag='LABEL' /&gt;">
                                     <ui:Target.TimeoutMS>
@@ -295,7 +317,7 @@
                                   </ui:Target>
                                 </ui:Check.Target>
                               </ui:Check>
-                              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Next'" sap:VirtualizedContainerService.HintSize="388,182" sap2010:WorkflowViewState.IdRef="NClick_4" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="01e67db0-d5c6-4e93-ab79-eaa9a1b41bf7" Version="V3">
+                              <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click : 'Next' button" sap:VirtualizedContainerService.HintSize="388,182" sap2010:WorkflowViewState.IdRef="NClick_4" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="01e67db0-d5c6-4e93-ab79-eaa9a1b41bf7" Version="V3">
                                 <uix:NClick.Target>
                                   <uix:TargetAnchorable BrowserURL="https://auth.uber.com/v2/?breeze_init_req_id=af41b01a-8f00-4acb-ad83-34e96252ac6e&amp;breeze_local_zone=phx50&amp;next_url=https%3A%2F%2Fm.uber.com%2Flogin-redirect%2F%3FpreviousPath%3D%252F&amp;state=GodDaSIhE06f7ZROdLdYOBbaaNIQoKYrOCqfRIn5JSw%3D" CVScreenId="1c154fac-4384-41f4-acee-a5a7e7bab4e0" CvElementArea="880, 689, 94, 55" CvTextArea="898, 708, 35, 15" CvTextArgument="Next" CvType="Button" DesignTimeRectangle="899, 707, 33, 20" DesignTimeScaleFactor="1" ElementType="Text" FullSelectorArgument="&lt;webctrl aaname='Next' parentid='forward-button' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Next' parentid='forward-button' tag='DIV' type='' class='ae ak' check:innerText='Next' /&gt;" Guid="b6a82cb4-78b6-4120-b6b5-a37c41da0743" InformativeScreenshot="5d4e1aad15b2b034f680a2bc0524e715.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Uber' /&gt;" SearchSteps="Selector" Version="V4" Visibility="Interactive">
                                     <uix:TargetAnchorable.Anchors>
@@ -309,12 +331,13 @@
                             </Sequence>
                           </uix:NCheckState.IfExists>
                           <uix:NCheckState.IfNotExists>
-                            <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="450,105" sap2010:WorkflowViewState.IdRef="Sequence_34">
+                            <Sequence DisplayName="Target does not appear : Logged in " sap:VirtualizedContainerService.HintSize="450,256" sap2010:WorkflowViewState.IdRef="Sequence_34">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
+                              <ui:LogMessage DisplayName="Log Message : Logged in succesfully" sap:VirtualizedContainerService.HintSize="388,168" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Info" Message="[&quot;Logged in successfully&quot;]" />
                             </Sequence>
                           </uix:NCheckState.IfNotExists>
                           <uix:NCheckState.Target>
@@ -336,12 +359,14 @@
                       </Sequence>
                     </uix:NCheckState.IfExists>
                     <uix:NCheckState.IfNotExists>
-                      <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="450,105" sap2010:WorkflowViewState.IdRef="Sequence_32">
+                      <Sequence DisplayName="Target does not appear : OTP page loading " sap:VirtualizedContainerService.HintSize="450,25" sap2010:WorkflowViewState.IdRef="Sequence_32">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
+                        <ui:LogMessage DisplayName="Log Message : OTP page " sap:VirtualizedContainerService.HintSize="388,168" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot; Failed to load OTP page&quot;]" />
                       </Sequence>
                     </uix:NCheckState.IfNotExists>
                     <uix:NCheckState.Target>
@@ -357,31 +382,32 @@
                 </Sequence>
               </uix:NCheckState.IfExists>
               <uix:NCheckState.IfNotExists>
-                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="1016,584" sap2010:WorkflowViewState.IdRef="Sequence_30">
+                <Sequence DisplayName="Target does not appear : Already Logged in" sap:VirtualizedContainerService.HintSize="450,140" sap2010:WorkflowViewState.IdRef="Sequence_30">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <uix:NCheckState DisplayName="Check App State 'Find a'" sap:VirtualizedContainerService.HintSize="954,496" sap2010:WorkflowViewState.IdRef="NCheckState_5" ScopeIdentifier="01e67db0-d5c6-4e93-ab79-eaa9a1b41bf7" Version="V3">
+                  <uix:NCheckState DisplayName="Check App State : Landing Page" sap:VirtualizedContainerService.HintSize="388,50" sap2010:WorkflowViewState.IdRef="NCheckState_5" ScopeIdentifier="01e67db0-d5c6-4e93-ab79-eaa9a1b41bf7" Timeout="[Convert.ToDouble(in_Config(&quot;CheckAppStateTimeMin&quot;))]" Version="V3">
                     <uix:NCheckState.IfExists>
-                      <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="450,256" sap2010:WorkflowViewState.IdRef="Sequence_38">
+                      <Sequence DisplayName="Target appears : Already logged in" sap:VirtualizedContainerService.HintSize="450,258" sap2010:WorkflowViewState.IdRef="Sequence_38">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="388,168" sap2010:WorkflowViewState.IdRef="LogMessage_5" Message="[&quot;user has already logged in&quot;]" />
+                        <ui:LogMessage DisplayName="Log Message : User Logged in " sap:VirtualizedContainerService.HintSize="388,168" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;user has already logged in&quot;]" />
                       </Sequence>
                     </uix:NCheckState.IfExists>
                     <uix:NCheckState.IfNotExists>
-                      <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="450,256" sap2010:WorkflowViewState.IdRef="Sequence_39">
+                      <Sequence DisplayName="Target does not appear : Page failed to load" sap:VirtualizedContainerService.HintSize="450,258" sap2010:WorkflowViewState.IdRef="Sequence_39">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="388,168" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Target failed to load &quot;]" />
+                        <ui:LogMessage DisplayName="Log Message : Home Page failed to load " sap:VirtualizedContainerService.HintSize="388,168" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Target failed to load &quot;]" />
                       </Sequence>
                     </uix:NCheckState.IfNotExists>
                     <uix:NCheckState.Target>
@@ -393,6 +419,12 @@
                         </uix:TargetAnchorable.Anchors>
                       </uix:TargetAnchorable>
                     </uix:NCheckState.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
                   </uix:NCheckState>
                 </Sequence>
               </uix:NCheckState.IfNotExists>
@@ -404,7 +436,7 @@
         </ActivityAction>
       </uix:NApplicationCard.Body>
       <uix:NApplicationCard.TargetApp>
-        <uix:TargetApp Area="-8, -8, 1616, 876" BrowserType="Chrome" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABPSURBVDhPpcuxDQAgEMNA9l/6obYjRERxjZWsmfkSYyPGRowNh5NutFfAgbRXwIG0V8CBtFfAgbRXwIG0V8CBtFfAgbRnaMXYiLER47tZG/sxfZ+R/hxrAAAAAElFTkSuQmCC" InformativeScreenshot="37c67c6f0942f07bf35f1eae70ddd0f0.jpg" Selector="&lt;html app='chrome.exe' title='Uber' /&gt;" Title="Uber" Url="https://auth.uber.com/v2/?breeze_init_req_id=af41b01a-8f00-4acb-ad83-34e96252ac6e&amp;breeze_local_zone=phx50&amp;next_url=https%3A%2F%2Fm.uber.com%2Flogin-redirect%2F%3FpreviousPath%3D%252F&amp;state=GodDaSIhE06f7ZROdLdYOBbaaNIQoKYrOCqfRIn5JSw%3D" />
+        <uix:TargetApp Area="-8, -8, 1616, 876" BrowserType="Chrome" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABPSURBVDhPpcuxDQAgEMNA9l/6obYjRERxjZWsmfkSYyPGRowNh5NutFfAgbRXwIG0V8CBtFfAgbRXwIG0V8CBtFfAgbRnaMXYiLER47tZG/sxfZ+R/hxrAAAAAElFTkSuQmCC" InformativeScreenshot="37c67c6f0942f07bf35f1eae70ddd0f0.jpg" Selector="&lt;html app='chrome.exe' title='Uber' /&gt;" Title="Uber" Url="[in_Config(&quot;UberUrl&quot;).ToString]" />
       </uix:NApplicationCard.TargetApp>
     </uix:NApplicationCard>
   </Sequence>
